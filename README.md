@@ -3,7 +3,7 @@ Game dev assignment
 
 
 
-# Committing changesPermalink
+# Committing changes
 
 Each time you have a set of changes ready to share with your team, you’ll be going through the following process to stage and commit them in git:
 
