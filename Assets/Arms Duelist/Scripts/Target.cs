@@ -11,5 +11,7 @@ public class Target : MonoBehaviour, IDamageable
         if(health <= 0){
             Destroy(gameObject);
         }
+        Debug.Log("Health of enemy: " + health);
+
     }
 }
