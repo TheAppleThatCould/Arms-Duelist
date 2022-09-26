@@ -7,13 +7,12 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
-
-	public Text currentAmmoText;
+    [SerializeField] private Player player;
 
     float timeSinceLastShot;
 
     private void Start(){
-        updateAmmo();
+        player.updateAmmo(gunData.currentAmmo);
 
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += StartReload;
@@ -22,7 +21,7 @@ public class Gun : MonoBehaviour
 
     public void StartReload(){
         if(!gunData.reloading){
-            StartCoroutine(Reload());
+            StartCoroutine(Reload()); 
         }
     }
 
@@ -33,8 +32,7 @@ public class Gun : MonoBehaviour
         gunData.currentAmmo = gunData.magSize;
         gunData.reloading = false;
 
-        updateAmmo();
-
+        player.updateAmmo(gunData.currentAmmo);
     }
 
     // Check to see if the player is reloading or is in the process of shooting their gun
@@ -52,7 +50,7 @@ public class Gun : MonoBehaviour
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
-                updateAmmo();
+                player.updateAmmo(gunData.currentAmmo);
             }
         }
     }
@@ -60,9 +58,5 @@ public class Gun : MonoBehaviour
     private void Update(){
         timeSinceLastShot += Time.deltaTime;
         Debug.DrawRay(muzzle.position, muzzle.forward);
-    }
-
-    public void updateAmmo(){
-        currentAmmoText.text = "Ammo: " + gunData.currentAmmo.ToString();
     }
 }
