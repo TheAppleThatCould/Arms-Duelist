@@ -7,6 +7,7 @@ public class PlayerShoot : MonoBehaviour
 {
     public static Action shootInput;
     public static Action reloadInput;
+    public Gun gunScript;
 
     [SerializeField] private KeyCode reloadKey;
 
@@ -18,6 +19,5 @@ public class PlayerShoot : MonoBehaviour
         if(Input.GetKeyDown(reloadKey)){
             reloadInput?.Invoke();
         }
-
     }
 }
