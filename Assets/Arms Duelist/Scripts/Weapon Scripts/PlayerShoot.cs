@@ -10,6 +10,7 @@ public class PlayerShoot : MonoBehaviour
     public Gun gunScript;
 
     [SerializeField] private KeyCode reloadKey;
+    [SerializeField] private AudioClip playerShootGun;           // the sound played when character touches back on ground.
 
     private void Update(){
         if (Input.GetMouseButton(0)){
@@ -19,5 +20,9 @@ public class PlayerShoot : MonoBehaviour
         if(Input.GetKeyDown(reloadKey)){
             reloadInput?.Invoke();
         }
+
+
+        // playerShootGun.Play();
+
     }
 }

@@ -17,6 +17,6 @@ public class Target : MonoBehaviour, IDamageable
         Debug.Log("Health of enemy: " + health);
         enemyHealth.text = "Health: " + health.ToString();
 
-        player.takeDamage(5);
+        player.takeDamage(50);
     }
 }

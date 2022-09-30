@@ -4,23 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+using UnityStandardAssets.Characters.FirstPerson;
+
 public class Player : MonoBehaviour
 {
+    public FirstPersonController firstPersonController;
+
 	public Text currentAmmoText;
 	public Text playerHealthText;
+    public bool isDead = false;
 
     public int health = 100;
 
     // Start is called before the first frame update
     void Start()
     {
+
         playerHealthText.text = "Health: " + health.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isDead();
+        checkIsDead();
     }
 
     public void updateAmmo(int currentAmmo){
@@ -36,9 +42,11 @@ public class Player : MonoBehaviour
         playerHealthText.text = "Health: " + health.ToString();
     }
 
-    public void isDead(){
-        if(health <0){
+    public void checkIsDead(){
+        if(health <= 0){
             SceneManager.LoadScene("LoseScene");
+            isDead = true;
+            firstPersonController.toggleCameraLock();
         }
     }
 }
