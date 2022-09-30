@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Target : MonoBehaviour, IDamageable
 {
-    private float health = 100f;
+    public float health = 100f;
+    public Text enemyHealth;
 
     public void TakeDamage(float damage){
         health -= damage;
@@ -12,6 +14,6 @@ public class Target : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
         Debug.Log("Health of enemy: " + health);
-
+        enemyHealth.text = "Health: " + health.ToString();
     }
 }

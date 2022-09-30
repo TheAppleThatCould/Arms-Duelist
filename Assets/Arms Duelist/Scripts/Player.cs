@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -19,10 +20,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        isDead();
     }
 
     public void updateAmmo(int currentAmmo){
         currentAmmoText.text = "Ammo: " + currentAmmo.ToString();
+    }
+
+    public void isDead(){
+        if(health <0){
+            SceneManager.LoadScene("LoseScene");
+        }
     }
 }

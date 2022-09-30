@@ -58,7 +58,6 @@ public class WeaponPickup : MonoBehaviour
         coll.isTrigger = true;
 
         gunScript.enabled = true;
-
     }
 
     private void Drop(){
@@ -79,7 +78,6 @@ public class WeaponPickup : MonoBehaviour
         //add random rotation on throw
         float random = Random.Range(-1f, 1f);
         rb.AddTorque(new Vector3(random, random, random)*10);
-
 
         gunScript.enabled = false;
     }
