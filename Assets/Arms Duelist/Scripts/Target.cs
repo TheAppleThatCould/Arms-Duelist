@@ -7,6 +7,7 @@ public class Target : MonoBehaviour, IDamageable
 {
     public float health = 100f;
     public Text enemyHealth;
+    public Player player;
 
     public void TakeDamage(float damage){
         health -= damage;
@@ -15,5 +16,7 @@ public class Target : MonoBehaviour, IDamageable
         }
         Debug.Log("Health of enemy: " + health);
         enemyHealth.text = "Health: " + health.ToString();
+
+        player.takeDamage(5);
     }
 }
