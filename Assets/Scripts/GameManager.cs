@@ -20,11 +20,16 @@ public class GameManager : MonoBehaviour
     public GameObject Winpanel;
     public GameObject overpanel;
 
+    // The current amount of enemies remaining.
+    public int enemiesRemaining = 0;
+
     private void Awake()
     {
         instence = this;
 
-        InvokeRepeating("SpawnEnemy",1,20);
+        // InvokeRepeating("SpawnEnemy",1,20);
+
+        Invoke("SpawnEnemy", 1);
     }
 
 
@@ -39,11 +44,14 @@ public class GameManager : MonoBehaviour
         boci--;
         for (int i = 0; i < 10; i++)
         {
-
+            
             int spindex = Random.Range(0, sptrans.Count);
             int preindex = Random.Range(0, enemyprelist.Count);
 
             Instantiate(enemyprelist[preindex], sptrans[spindex].position,Quaternion.identity);
+
+            // Increment the amount of enemies remaining for each enemy spawn.
+            enemiesRemaining += 1;
         }
 
     }
@@ -54,5 +62,4 @@ public class GameManager : MonoBehaviour
         NumText.text = "score:"+NUm.ToString();
 
     }
-
 }

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class SoulBoss : MonoBehaviour
 {
-
+    // Get the remaining enemies from gameManager
+    private GameManager gameManager;
     private Transform playerPos;
     private NavMeshAgent navAi;
     private Animator animator;
@@ -15,15 +16,15 @@ public class SoulBoss : MonoBehaviour
     public float timer = 3;
     private float time = 3;
 
-
-
     private AudioSource source;
-
     private newPlayer player;
-
 
     public float HP = 100;
     private float maxhp;
+
+    // Check if enemy is dead
+    private bool isDead = false;
+
     void Start()
     {
         maxhp = HP;
@@ -33,13 +34,28 @@ public class SoulBoss : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<newPlayer>();
         navAi = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        // Get the game manager instance
+        GameObject gameManagerObject = GameObject.Find("/GameManager");
+        gameManager = gameManagerObject.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Enemies remaining: " + gameManager.enemiesRemaining);
 
-        if (HP <= 0) { navAi.isStopped = true; return; }
+        if (HP <= 0) { 
+            // Run on enemy death ->
+            navAi.isStopped = true; 
+
+            if(!isDead){
+                // Decrement remaining enemies only once for each enemy.  
+                gameManager.enemiesRemaining -= 1;
+                isDead = true;
+            }
+            return; 
+        }
 
 
 
@@ -69,9 +85,6 @@ public class SoulBoss : MonoBehaviour
               
             animator.SetBool("Walk", true);
         }
-
-
-
     }
 
 
@@ -90,6 +103,7 @@ public class SoulBoss : MonoBehaviour
 
     public Slider hpslider;
     public bool isBoss = false;
+
     public void TakeDamage(float damage)
     {
         if (HP <=0) return;
