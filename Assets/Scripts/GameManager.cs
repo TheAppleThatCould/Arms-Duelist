@@ -14,8 +14,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject Boss;
 
+    // UI text for player interface ->
     public Text NumText;
     public int NUm;
+    public Text RemainingEnemiesText;
+    public Text CurrentWaveText;
+
 
     public GameObject Winpanel;
     public GameObject overpanel;
@@ -34,6 +38,11 @@ public class GameManager : MonoBehaviour
 
         // Spawn enemies straight away.
         Invoke("SpawnEnemy", 1);
+    }
+
+    void Update(){
+        // Update the UI Text every frame
+        updateUIText();
     }
 
     private void updateGame(){
@@ -72,5 +81,10 @@ public class GameManager : MonoBehaviour
     {
         NUm++;
         NumText.text = "score:"+NUm.ToString();
+    }
+
+    public void updateUIText(){
+        RemainingEnemiesText.text = "Remaining Enemies: " + enemiesRemaining.ToString();
+        CurrentWaveText.text = "Current Wave: " + currentWave.ToString();
     }
 }
