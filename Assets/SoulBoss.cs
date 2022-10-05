@@ -43,8 +43,6 @@ public class SoulBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Enemies remaining: " + gameManager.enemiesRemaining);
-
         if (HP <= 0) { 
             // Run on enemy death ->
             navAi.isStopped = true; 

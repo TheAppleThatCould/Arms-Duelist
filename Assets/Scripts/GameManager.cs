@@ -23,15 +23,25 @@ public class GameManager : MonoBehaviour
     // The current amount of enemies remaining.
     public int enemiesRemaining = 0;
 
+    private int currentWave = 0;
+
     private void Awake()
     {
         instence = this;
 
-        // InvokeRepeating("SpawnEnemy",1,20);
+        // The built-in update() was too fast, therefore the InvokeRepeating is used to check the remaining enemies.
+        InvokeRepeating("updateGame",2,3);
 
+        // Spawn enemies straight away.
         Invoke("SpawnEnemy", 1);
     }
 
+    private void updateGame(){
+        // check if all the enemies are dead and limit the amount of waves
+        if(enemiesRemaining == 0 && currentWave <= 6){
+            Invoke("SpawnEnemy", 5);
+        }
+    }
 
     public void SpawnEnemy()
     {
@@ -54,12 +64,13 @@ public class GameManager : MonoBehaviour
             enemiesRemaining += 1;
         }
 
+        // Increment the current wave count.
+        currentWave += 1;
     }
 
     public void AddNum()
     {
         NUm++;
         NumText.text = "score:"+NUm.ToString();
-
     }
 }
