@@ -10,11 +10,18 @@ public class newPlayer : MonoBehaviour
     public float HP = 100;
     private float MaxHP;
 
+    public int damage = 20;
+    public int BulletNum = 30;
+    private int totalBulletNum;
 
-    public float BulletNum = 30;
+    // Check to see if the player is currently holder a gun.
+    public bool isEquiped = false;
+
+
     private void Start()
     {
         MaxHP = HP;
+        totalBulletNum = BulletNum;
         soue = GetComponent<AudioSource>();
     }
 
@@ -29,30 +36,32 @@ public class newPlayer : MonoBehaviour
     private AudioSource soue;
     public AudioClip shootclip;
     public Text bulletText;
+
+
     public void Fire()
     {
-        if (Input.GetMouseButtonDown(0)&&BulletNum>0)
+        if (Input.GetMouseButtonDown(0)&&BulletNum>0 && isEquiped == true)
         {   
             fx1.Play();
             fx2.Play();
             soue.PlayOneShot(shootclip);
             BulletNum--;
-            bulletText.text = "Bullet:" + BulletNum.ToString() + "/30";
+            bulletText.text = "Bullet:" + BulletNum.ToString() + "/"+ totalBulletNum.ToString();
 
 
             Ray ray =   Camera.main.ScreenPointToRay(new Vector2(Screen.width/2,Screen.height/2));
             RaycastHit hitinfo;
             if (Physics.Raycast(ray, out hitinfo)&&hitinfo.collider.tag=="enemy")
             {   
-                hitinfo.collider.GetComponent<SoulBoss>().TakeDamage(20);
+                hitinfo.collider.GetComponent<SoulBoss>().TakeDamage(damage);
             }
 
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            BulletNum = 30;
-            bulletText.text = "Bullet:" + BulletNum.ToString() + "/30"; ;
+            BulletNum = totalBulletNum;
+            bulletText.text = "Bullet:" + BulletNum.ToString() + "/" + totalBulletNum.ToString();
         }
 
 
