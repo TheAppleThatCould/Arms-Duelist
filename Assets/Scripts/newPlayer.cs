@@ -39,6 +39,8 @@ public class newPlayer : MonoBehaviour
     public AudioClip shootclip;
     public Text bulletText;
     public AudioClip pickUpSound;
+    public AudioClip loseSound;
+
 
     public void Fire()
     {
@@ -83,6 +85,8 @@ public class newPlayer : MonoBehaviour
             HP = 0;
             Time.timeScale = 0;
             // TODO: the game can't restart in loseScene.
+            source.PlayOneShot(loseSound);
+
             firstPersonController = gameObject.GetComponent<FirstPersonController>();
             firstPersonController.unlockMouseLock();
             SceneManager.LoadScene("LoseScene");
