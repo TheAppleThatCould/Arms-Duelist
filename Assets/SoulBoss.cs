@@ -155,13 +155,17 @@ public class SoulBoss : MonoBehaviour
 
 
     public void spawnRandomItem(){
-        int randomNum = Random.Range(0, 6);
+        // a function that will spawn a random item on enemy death.
+        int randomNum = Random.Range(0, 100);
         Debug.Log("Random number: " + randomNum);
-        if(randomNum <= 2){
+
+        if(randomNum <= 50){
+            // 50% chance to drop ammo
             Instantiate(ammoPack, transform.position, ammoPack.transform.rotation);
         } else{
-            // No item will drop if the number lands on 5.
-            if(randomNum > 2 && randomNum != 5){
+            // 40% chance to drop health
+            // No item will drop if the number is above 90.
+            if(randomNum > 50 && randomNum <= 90>){
                 Instantiate(health, transform.position, ammoPack.transform.rotation);
             }
         }
