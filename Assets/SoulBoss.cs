@@ -165,7 +165,7 @@ public class SoulBoss : MonoBehaviour
         } else{
             // 40% chance to drop health
             // No item will drop if the number is above 90.
-            if(randomNum > 50 && randomNum <= 90>){
+            if(randomNum > 50 && randomNum <= 90){
                 Instantiate(health, transform.position, ammoPack.transform.rotation);
             }
         }

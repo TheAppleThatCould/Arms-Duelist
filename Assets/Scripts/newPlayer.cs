@@ -21,25 +21,24 @@ public class newPlayer : MonoBehaviour
     // Check to see if the player is currently holder a gun.
     public bool isEquiped = false;
 
-
     private void Start()
     {
         MaxHP = HP;
         totalBulletNum = BulletNum;
-        soue = GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         Fire();
     }
-
+    // sound variable
     public ParticleSystem fx1;
     public ParticleSystem fx2;
-    private AudioSource soue;
+    private AudioSource source;
     public AudioClip shootclip;
     public Text bulletText;
-
+    public AudioClip pickUpSound;
 
     public void Fire()
     {
@@ -47,7 +46,7 @@ public class newPlayer : MonoBehaviour
         {   
             fx1.Play();
             fx2.Play();
-            soue.PlayOneShot(shootclip);
+            source.PlayOneShot(shootclip);
             BulletNum--;
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/"+ totalBulletNum.ToString();
 
@@ -90,7 +89,6 @@ public class newPlayer : MonoBehaviour
         }
 
         hpslider.value = HP / MaxHP;
-
     }
 
 
@@ -102,11 +100,13 @@ public class newPlayer : MonoBehaviour
 
 	// Increment ammo when player picks up ammo
 	public void ApplyAmmoPickup() {
+        source.PlayOneShot(pickUpSound);
 		ammo = ammo + 20;
 	}
 
     // Increment health when player picks up health
 	public void ApplyHealthPickup() {
+        source.PlayOneShot(pickUpSound);
 		HP = HP + 20;
         hpslider.value = HP / MaxHP;
 	}
