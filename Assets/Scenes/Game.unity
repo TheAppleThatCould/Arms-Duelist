@@ -586,7 +586,7 @@ RectTransform:
   m_LocalScale: {x: 0.5167932, y: 0.5167932, z: 0.5167932}
   m_Children: []
   m_Father: {fileID: 1706670050}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1617,7 +1617,7 @@ RectTransform:
   - {fileID: 1652461227}
   - {fileID: 1143711162}
   m_Father: {fileID: 1706670050}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3622,7 +3622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1392772281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3636,7 +3636,7 @@ RectTransform:
   m_Children:
   - {fileID: 1916666948}
   m_Father: {fileID: 1706670050}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3779,14 +3779,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394987005}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 140056465}
   - {fileID: 2147283691}
   m_Father: {fileID: 1706670050}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4252,7 +4252,7 @@ MonoBehaviour:
   - {fileID: 4055512999694998149, guid: a2d8741faae60f249bb7253e48bdc852, type: 3}
   - {fileID: 1021731913185669401, guid: 8f3359a12e6b5fb41820ddf25e145c27, type: 3}
   - {fileID: 5776270568589166772, guid: 6e48726a4e2bbcd4f9ac76d22916cf84, type: 3}
-  boci: 0
+  boci: 5
   Boss: {fileID: 1280661996}
   NumText: {fileID: 1188095980}
   NUm: 0
@@ -4372,14 +4372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c5785bcc732d945873297974ef9bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bullpup
-  damage: 20
-  maxDistance: 2000
-  currentAmmo: 40
-  magSize: 40
-  fireRate: 20
-  reloadTime: 2
-  reloading: 0
 --- !u!114 &1566620688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4392,8 +4384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ff16743f4e9954aa586b3c00343e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzle: {fileID: 266203567}
-  player: {fileID: 0}
 --- !u!4 &1610097612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7df2811d2a37b154b8ffb2686a397ee1, type: 3}
@@ -4429,7 +4419,7 @@ RectTransform:
   m_LocalScale: {x: 0.5167932, y: 0.5167932, z: 0.5167932}
   m_Children: []
   m_Father: {fileID: 1706670050}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4730,12 +4720,12 @@ RectTransform:
   - {fileID: 1188095978}
   - {fileID: 926761493}
   - {fileID: 158130926}
-  - {fileID: 704122260}
-  - {fileID: 1394987006}
   - {fileID: 276631319}
   - {fileID: 1755077857}
-  - {fileID: 1392772281}
   - {fileID: 1635134672}
+  - {fileID: 704122260}
+  - {fileID: 1394987006}
+  - {fileID: 1392772281}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4908,7 +4898,7 @@ RectTransform:
   m_LocalScale: {x: 0.5167932, y: 0.5167932, z: 0.5167932}
   m_Children: []
   m_Father: {fileID: 1706670050}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
