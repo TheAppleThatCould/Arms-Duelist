@@ -29,7 +29,6 @@ public class WeaponPickup : MonoBehaviour
         // Get the current gun data.
         gunData = gameObject.GetComponent<GunData>();
 
-        Debug.Log(gunData.damage);
         // Intialize the gunData 
         playerScript.damage = gunData.damage;
         playerScript.BulletNum = gunData.bulletNum;

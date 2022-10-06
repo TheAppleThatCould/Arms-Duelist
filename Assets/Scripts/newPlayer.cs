@@ -13,7 +13,7 @@ public class newPlayer : MonoBehaviour
     public int damage = 20;
     public int BulletNum = 30;
     public int totalBulletNum;
-    public int ammo = 100;
+    public int ammo = 20;
 
     // Check to see if the player is currently holder a gun.
     public bool isEquiped = false;
@@ -67,10 +67,8 @@ public class newPlayer : MonoBehaviour
             
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/" + totalBulletNum.ToString();
         } else {
-            Debug.Log("Out of ammo");
+            // Debug.Log("Out of ammo");
         }
-
-
     }
 
     public Slider hpslider;
@@ -96,4 +94,8 @@ public class newPlayer : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+	// Increment ammo
+	public void ApplyAmmoPickup() {
+		ammo = ammo + 20;
+	}
 }

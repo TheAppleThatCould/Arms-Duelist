@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
     public void updateUIText(){
         RemainingEnemiesText.text = "Remaining Enemies: " + enemiesRemaining.ToString();
         CurrentWaveText.text = "Current Wave: " + currentWave.ToString();
-        Debug.Log(player.ammo);
         currentAmmoText.text = "Ammo: " + player.ammo.ToString();
     }
 
