@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Winpanel;
     public GameObject overpanel;
+    public GameObject IntroductionPanel;
+
 
     // The current amount of enemies remaining.
     public int enemiesRemaining = 0;
@@ -33,11 +35,14 @@ public class GameManager : MonoBehaviour
     {
         instence = this;
 
+        // Disable the introPanel in 5 seconds
+        Invoke("toggleIntroPanel", 10);
+
         // The built-in update() was too fast, therefore the InvokeRepeating is used to check the remaining enemies.
-        InvokeRepeating("updateGame",2,3);
+        InvokeRepeating("updateGame", 14, 3);
 
         // Spawn enemies straight away.
-        Invoke("SpawnEnemy", 1);
+        Invoke("SpawnEnemy", 12);
     }
 
     void Update(){
@@ -86,5 +91,9 @@ public class GameManager : MonoBehaviour
     public void updateUIText(){
         RemainingEnemiesText.text = "Remaining Enemies: " + enemiesRemaining.ToString();
         CurrentWaveText.text = "Current Wave: " + currentWave.ToString();
+    }
+
+    private void toggleIntroPanel(){
+        IntroductionPanel.SetActive(false);
     }
 }
