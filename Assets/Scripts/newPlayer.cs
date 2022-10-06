@@ -21,6 +21,9 @@ public class newPlayer : MonoBehaviour
     // Check to see if the player is currently holder a gun.
     public bool isEquiped = false;
 
+    public float powerUpTimer = 0;
+    public bool unlimitedAmmo = false;
+
     private void Start()
     {
         MaxHP = HP;
@@ -31,7 +34,17 @@ public class newPlayer : MonoBehaviour
     private void Update()
     {
         Fire();
+        Debug.Log(unlimitedAmmo);
+        // Start to decrement the timer once a powerup assign a time to the powerUpTimer.
+        if(powerUpTimer >= 0){
+            powerUpTimer -= Time.deltaTime;
+            if(powerUpTimer < 1){
+                unlimitedAmmo = false;
+            }
+        }
     }
+
+
     // sound variable
     public ParticleSystem fx1;
     public ParticleSystem fx2;
@@ -49,11 +62,17 @@ public class newPlayer : MonoBehaviour
             fx1.Play();
             fx2.Play();
             source.PlayOneShot(shootclip);
-            BulletNum--;
+            
+            // Check if the player currently have unlimited ammo power up
+            if(!unlimitedAmmo){
+                BulletNum--;
+            }
+
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/"+ totalBulletNum.ToString();
 
             Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width/2,Screen.height/2));
             RaycastHit hitinfo;
+
             if (Physics.Raycast(ray, out hitinfo)&&hitinfo.collider.tag=="enemy")
             {   
                 hitinfo.collider.GetComponent<SoulBoss>().TakeDamage(damage);
@@ -114,4 +133,10 @@ public class newPlayer : MonoBehaviour
 		HP = HP + 20;
         hpslider.value = HP / MaxHP;
 	}
+
+    // A function that will set the bulletNum to -1 inorder to let the player have unlimited ammo
+    public void ApplyUnlimitedAmmoPickup(){
+        powerUpTimer = 5;
+        unlimitedAmmo = true;
+    }
 }
