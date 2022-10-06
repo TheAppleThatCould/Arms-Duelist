@@ -34,8 +34,8 @@ public class newPlayer : MonoBehaviour
     private void Update()
     {
         Fire();
-        Debug.Log(unlimitedAmmo);
-        // Start to decrement the timer once a powerup assign a time to the powerUpTimer.
+
+        // Start to decrement the timer for power up duration.
         if(powerUpTimer >= 0){
             powerUpTimer -= Time.deltaTime;
             if(powerUpTimer < 1){
@@ -136,7 +136,11 @@ public class newPlayer : MonoBehaviour
 
     // A function that will set the bulletNum to -1 inorder to let the player have unlimited ammo
     public void ApplyUnlimitedAmmoPickup(){
+        // Increment the ammo by 1 to be fair.
+        ammo = ammo + 1;
+        // Set the power up timer
         powerUpTimer = 5;
+        // and set the unlimitedAmmo variable to true
         unlimitedAmmo = true;
     }
 }

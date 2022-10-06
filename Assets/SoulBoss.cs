@@ -13,6 +13,8 @@ public class SoulBoss : MonoBehaviour
     // Get the items asset to spawn on enemy death
     private GameObject ammoPack;
     private GameObject health;
+    private GameObject unlimitedAmmo;
+
 
     // Get the first person controller for the purpose of unlocking the mouse lock.
     FirstPersonController firstPersonController;
@@ -51,6 +53,7 @@ public class SoulBoss : MonoBehaviour
         // Get the item assets to copy.
         ammoPack = GameObject.Find("/PotentialPowerUps/AmmoBox");
         health = GameObject.Find("/PotentialPowerUps/Health");
+        unlimitedAmmo = GameObject.Find("/PotentialPowerUps/UnlimitedAmmo");
     }
 
     // Update is called once per frame
@@ -162,12 +165,12 @@ public class SoulBoss : MonoBehaviour
         if(randomNum <= 50){
             // 50% chance to drop ammo
             Instantiate(ammoPack, transform.position, ammoPack.transform.rotation);
-        } else{
-            // 40% chance to drop health
-            // No item will drop if the number is above 90.
-            if(randomNum > 50 && randomNum <= 90){
-                Instantiate(health, transform.position, ammoPack.transform.rotation);
-            }
+        } else if(randomNum > 50 && randomNum <= 80){
+            // 30% chance to drop health
+            Instantiate(health, transform.position, ammoPack.transform.rotation);
+        } else if(randomNum > 80){
+            // 20% chance to drop unlimited ammo
+            Instantiate(unlimitedAmmo, transform.position, ammoPack.transform.rotation);
         }
     }
 }
