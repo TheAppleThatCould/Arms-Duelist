@@ -146,12 +146,15 @@ public class SoulBoss : MonoBehaviour
 
 
     public void spawnRandomItem(){
-        int randomNum = Random.Range(0, 4);
+        int randomNum = Random.Range(0, 6);
         Debug.Log("Random number: " + randomNum);
-        if(randomNum < 2){
+        if(randomNum <= 2){
             Instantiate(ammoPack, transform.position, ammoPack.transform.rotation);
         } else{
-            Instantiate(health, transform.position, ammoPack.transform.rotation);
+            // No item will drop if the number lands on 5.
+            if(randomNum > 2 && randomNum != 5){
+                Instantiate(health, transform.position, ammoPack.transform.rotation);
+            }
         }
     }
 }
