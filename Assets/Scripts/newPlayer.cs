@@ -94,9 +94,14 @@ public class newPlayer : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-	// Increment ammo
+	// Increment ammo when player picks up ammo
 	public void ApplyAmmoPickup() {
-        Debug.Log("Picking up the ammo");
 		ammo = ammo + 20;
+	}
+
+    // Increment health when player picks up health
+	public void ApplyHealthPickup() {
+		HP = HP + 20;
+        hpslider.value = HP / MaxHP;
 	}
 }
