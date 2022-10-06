@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("updateGame", 14, 3);
 
         // Spawn enemies before the updateGame() because the updateGame will check the amount of enemies spawned.
-        Invoke("SpawnEnemy", 2);
+        Invoke("SpawnEnemy", 13);
     }
 
     void Update(){
