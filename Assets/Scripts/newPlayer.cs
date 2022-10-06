@@ -12,7 +12,8 @@ public class newPlayer : MonoBehaviour
 
     public int damage = 20;
     public int BulletNum = 30;
-    private int totalBulletNum;
+    public int totalBulletNum;
+    public int ammo = 100;
 
     // Check to see if the player is currently holder a gun.
     public bool isEquiped = false;
@@ -30,7 +31,6 @@ public class newPlayer : MonoBehaviour
         Fire();
     }
 
-
     public ParticleSystem fx1;
     public ParticleSystem fx2;
     private AudioSource soue;
@@ -40,7 +40,7 @@ public class newPlayer : MonoBehaviour
 
     public void Fire()
     {
-        if (Input.GetMouseButtonDown(0)&&BulletNum>0 && isEquiped == true)
+        if (Input.GetMouseButtonDown(0)&& BulletNum > 0 && isEquiped == true )
         {   
             fx1.Play();
             fx2.Play();
@@ -58,10 +58,16 @@ public class newPlayer : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && ammo > 0)
         {
+            // Decrement the amount of ammo it takes to reload the gun
+            ammo -= totalBulletNum;
+            // Asign the totalBullet the gun can hold to the bullet number
             BulletNum = totalBulletNum;
+            
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/" + totalBulletNum.ToString();
+        } else {
+            Debug.Log("Out of ammo");
         }
 
 

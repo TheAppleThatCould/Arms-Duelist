@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instence;
+    public newPlayer player;
 
     public List<Transform> sptrans = new List<Transform>();
     public List<GameObject> enemyprelist = new List<GameObject>();
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int NUm;
     public Text RemainingEnemiesText;
     public Text CurrentWaveText;
+    public Text currentAmmoText;
 
 
     public GameObject Winpanel;
@@ -33,6 +35,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        GameObject playerObject = GameObject.Find("/Player");
+        player = playerObject.GetComponent<newPlayer>();
+
         instence = this;
 
         // Disable the introPanel in 5 seconds
@@ -91,6 +96,8 @@ public class GameManager : MonoBehaviour
     public void updateUIText(){
         RemainingEnemiesText.text = "Remaining Enemies: " + enemiesRemaining.ToString();
         CurrentWaveText.text = "Current Wave: " + currentWave.ToString();
+        Debug.Log(player.ammo);
+        currentAmmoText.text = "Ammo: " + player.ammo.ToString();
     }
 
     private void toggleIntroPanel(){

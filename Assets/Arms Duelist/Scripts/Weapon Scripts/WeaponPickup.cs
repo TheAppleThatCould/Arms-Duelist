@@ -22,6 +22,7 @@ public class WeaponPickup : MonoBehaviour
 
 
     private void Start(){
+
         // Get the player game object
         playerScript = player.GetComponent<newPlayer>();
 
@@ -32,6 +33,8 @@ public class WeaponPickup : MonoBehaviour
         // Intialize the gunData 
         playerScript.damage = gunData.damage;
         playerScript.BulletNum = gunData.bulletNum;
+        playerScript.totalBulletNum = gunData.bulletNum;
+        // The isEquiped
         playerScript.isEquiped = true;
 
         // Get the gun crosshair
