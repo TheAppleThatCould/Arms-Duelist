@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class SoulBoss : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class SoulBoss : MonoBehaviour
     private GameObject ammoPack;
     private GameObject health;
 
+    // Get the first person controller for the purpose of unlocking the mouse lock.
+    FirstPersonController firstPersonController;
 
     private Transform playerPos;
     private NavMeshAgent navAi;
@@ -129,7 +133,7 @@ public class SoulBoss : MonoBehaviour
 
             if (isBoss){
        
-                Invoke("yanshiying",3); 
+                Invoke("yanshiying",5); 
             }
 
             Destroy(this.gameObject,5);
@@ -141,7 +145,12 @@ public class SoulBoss : MonoBehaviour
     public void yanshiying()
     {
         Time.timeScale = 0;
-        GameManager.instence.Winpanel.SetActive(true);
+        
+        GameObject player = GameObject.Find("/Player");
+        firstPersonController = player.GetComponent<FirstPersonController>();
+        firstPersonController.unlockMouseLock();
+        SceneManager.LoadScene("WinScene");
+
     }
 
 

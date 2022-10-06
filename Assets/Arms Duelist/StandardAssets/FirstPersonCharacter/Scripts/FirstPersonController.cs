@@ -134,6 +134,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.UpdateCursorLock();
         }
 
+        public void unlockMouseLock(){
+            m_MouseLook.SetCursorLock(false);
+        }
+
 
         private void PlayJumpSound()
         {

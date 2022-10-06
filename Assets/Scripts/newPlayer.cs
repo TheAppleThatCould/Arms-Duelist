@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class newPlayer : MonoBehaviour
 {
+    // Get the first person controller for the purpose of unlocking the mouse lock.
+    FirstPersonController firstPersonController;
 
     public float HP = 100;
     private float MaxHP;
@@ -48,8 +51,7 @@ public class newPlayer : MonoBehaviour
             BulletNum--;
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/"+ totalBulletNum.ToString();
 
-
-            Ray ray =   Camera.main.ScreenPointToRay(new Vector2(Screen.width/2,Screen.height/2));
+            Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width/2,Screen.height/2));
             RaycastHit hitinfo;
             if (Physics.Raycast(ray, out hitinfo)&&hitinfo.collider.tag=="enemy")
             {   
@@ -80,7 +82,11 @@ public class newPlayer : MonoBehaviour
         if (HP<=0)
         {
             HP = 0;
-            GameManager.instence.overpanel.SetActive(true);Time.timeScale = 0;
+            Time.timeScale = 0;
+            // TODO: the game can't restart in loseScene.
+            firstPersonController = gameObject.GetComponent<FirstPersonController>();
+            firstPersonController.unlockMouseLock();
+            SceneManager.LoadScene("LoseScene");
         }
 
         hpslider.value = HP / MaxHP;
