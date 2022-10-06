@@ -96,6 +96,7 @@ public class newPlayer : MonoBehaviour
 
 	// Increment ammo
 	public void ApplyAmmoPickup() {
+        Debug.Log("Picking up the ammo");
 		ammo = ammo + 20;
 	}
 }

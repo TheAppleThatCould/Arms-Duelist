@@ -8,6 +8,8 @@ public class SoulBoss : MonoBehaviour
 {
     // Get the remaining enemies from gameManager
     private GameManager gameManager;
+    // Get the ammoPack asset so i can spawn more on enemy death
+    private GameObject ammoPack;
     private Transform playerPos;
     private NavMeshAgent navAi;
     private Animator animator;
@@ -38,6 +40,9 @@ public class SoulBoss : MonoBehaviour
         // Get the game manager instance
         GameObject gameManagerObject = GameObject.Find("/GameManager");
         gameManager = gameManagerObject.GetComponent<GameManager>();
+
+        // Get the ammoPack asset to copy.
+        ammoPack = GameObject.Find("/PotentialPowerUps/AmmoBox");
     }
 
     // Update is called once per frame
@@ -51,6 +56,7 @@ public class SoulBoss : MonoBehaviour
                 // Decrement remaining enemies only once for each enemy.  
                 gameManager.enemiesRemaining -= 1;
                 isDead = true;
+                spawnRandomItem();
             }
             return; 
         }
@@ -132,5 +138,10 @@ public class SoulBoss : MonoBehaviour
     {
         Time.timeScale = 0;
         GameManager.instence.Winpanel.SetActive(true);
+    }
+
+
+    public void spawnRandomItem(){
+        Instantiate(ammoPack, transform.position, ammoPack.transform.rotation);
     }
 }

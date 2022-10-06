@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour
         // The built-in update() was too fast, therefore the InvokeRepeating is used to check the remaining enemies.
         InvokeRepeating("updateGame", 14, 3);
 
-        // Spawn enemies straight away.
-        Invoke("SpawnEnemy", 12);
+        // Spawn enemies before the updateGame() because the updateGame will check the amount of enemies spawned.
+        Invoke("SpawnEnemy", 2);
     }
 
     void Update(){
