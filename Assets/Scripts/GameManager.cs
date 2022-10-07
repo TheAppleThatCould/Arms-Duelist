@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     public List<Transform> sptrans = new List<Transform>();
     public List<GameObject> enemyprelist = new List<GameObject>();
 
-    public int boci = 5;
-
     public GameObject Boss;
 
     // UI text for player interface ->
@@ -28,11 +26,13 @@ public class GameManager : MonoBehaviour
     public GameObject overpanel;
     public GameObject IntroductionPanel;
 
+    public AudioSource backgroundMusic;
+    public AudioClip winMusic;
 
     // The current amount of enemies remaining.
     public int enemiesRemaining = 0;
 
-    private int currentWave = 0;
+    public int currentWave = 0;
 
     private void Awake()
     {
@@ -65,13 +65,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        if (boci<1)
+        if (currentWave >=6)
         {
             Boss.SetActive(true);
             return;
         }
 
-        boci--;
         for (int i = 0; i < 10; i++)
         {
             
@@ -103,5 +102,9 @@ public class GameManager : MonoBehaviour
 
     private void toggleIntroPanel(){
         IntroductionPanel.SetActive(false);
+    }
+
+    public void playWinMusic(){
+        backgroundMusic.PlayOneShot(winMusic);
     }
 }

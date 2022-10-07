@@ -135,7 +135,7 @@ public class SoulBoss : MonoBehaviour
             hpslider.gameObject.SetActive(false);
 
             if (isBoss){
-       
+                gameManager.playWinMusic();
                 Invoke("yanshiying",5); 
             }
 
