@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    // get the player 
+    // Get scripts 
     private newPlayer playerScript;
     private GunData gunData;
+    private GameManager gameManagerScript;
 
+    // Get game objects
+    private GameObject weaponHolder;
     private GameObject crossHair;
 
     public Rigidbody rb;
@@ -21,13 +24,22 @@ public class WeaponPickup : MonoBehaviour
     public static bool slotFull;
 
 
-    private void Start(){
+    private Vector3 weaponVectorPosition = new Vector3(0f, 0f, 0f);
+    private Vector3 weaponVectorRotation = new Vector3(0f, 0f, 0f);
+    private Vector3 weaponVectorScale = new Vector3(1f, 1f, 1f);
 
+
+    private void Start(){
+        // Get the gameManager game object
+        GameObject gameManager = GameObject.Find("/GameManager");
+        gameManagerScript = gameManager.GetComponent<GameManager>();
         // Get the player game object
         playerScript = player.GetComponent<newPlayer>();
 
         // Get the current gun data.
-        gunData = gameObject.GetComponent<GunData>();
+        weaponHolder = GameObject.Find("/Player/FirstPersonCharacter/WeaponHolder");
+        gunData = weaponHolder.transform.GetChild(0).GetComponent<GunData>();
+
 
         // Intialize the gunData 
         playerScript.damage = gunData.damage;
@@ -56,9 +68,6 @@ public class WeaponPickup : MonoBehaviour
         // pick up weapon
         if(!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull){
             PickUp();
-
-            playerScript.damage = gunData.damage;
-            playerScript.BulletNum = gunData.bulletNum;
         }
 
         // Drop weapon
@@ -76,12 +85,37 @@ public class WeaponPickup : MonoBehaviour
         // Pick up gun and place it in the WeaponHolder and set the position and rotation to zero.
         // This is to let the parent object aka the WeaponHolder set the postion and roation. 
         transform.SetParent(WeaponHolder);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(Vector3.zero);
-        transform.localScale = Vector3.one;
+
+
+        // change the position and rotation of a weapon depending on the weapon.
+        if(gameObject.name == "Revolver"){
+            weaponVectorPosition = new Vector3(-0.9f, 0.15f, -0.325f);
+            weaponVectorRotation = new Vector3(0f, 89f, 0f);
+            weaponVectorScale = new Vector3(2.5f, 2.5f, 2.5f);
+        } else if(gameObject.name == "AssualtRife"){
+            weaponVectorPosition = new Vector3(-0.2f, 0f, -0.3f);
+            weaponVectorRotation = new Vector3(0f, -90f, 0f);
+            weaponVectorScale = new Vector3(4f, 4f, 4f);
+        }
+        
+        transform.localPosition = weaponVectorPosition;
+        transform.localRotation = Quaternion.Euler(weaponVectorRotation);
+        transform.localScale = weaponVectorScale;
+        
 
         rb.isKinematic = true;
         coll.isTrigger = true;
+
+        // Get the current gun data.
+        gunData = weaponHolder.transform.GetChild(0).GetComponent<GunData>();
+
+        playerScript.damage = gunData.damage;
+        playerScript.BulletNum = gunData.bulletNum;
+        playerScript.totalBulletNum = gunData.totalBulletNum;
+        playerScript.ammo = gunData.ammo;
+
+        // update the UI text
+        gameManagerScript.updateUIText();
     }
 
     private void Drop(){
@@ -104,6 +138,9 @@ public class WeaponPickup : MonoBehaviour
         //add random rotation on throw
         float random = Random.Range(-1f, 1f);
         rb.AddTorque(new Vector3(random, random, random)*10);
+
+        // update the UI text
+        gameManagerScript.updateUIText();
     }
 
 }

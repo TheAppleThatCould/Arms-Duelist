@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Text RemainingEnemiesText;
     public Text CurrentWaveText;
     public Text currentAmmoText;
-
+    public Text bulletText;
 
     public GameObject Winpanel;
     public GameObject overpanel;
@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
         RemainingEnemiesText.text = "Remaining Enemies: " + enemiesRemaining.ToString();
         CurrentWaveText.text = "Current Wave: " + currentWave.ToString();
         currentAmmoText.text = "Ammo: " + player.ammo.ToString();
+        bulletText.text = "Bullet:" + player.BulletNum.ToString() + "/" + player.totalBulletNum.ToString();
     }
 
     private void toggleIntroPanel(){

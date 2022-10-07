@@ -11,4 +11,6 @@ public class GunData : MonoBehaviour {
 
     [Header("Reloading")]
     public int bulletNum = 20;
+    public int totalBulletNum = 20;
+    public int ammo = 20;
 }

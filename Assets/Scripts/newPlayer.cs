@@ -34,7 +34,6 @@ public class newPlayer : MonoBehaviour
     private void Update()
     {
         Fire();
-
         // Start to decrement the timer for power up duration.
         if(powerUpTimer >= 0){
             powerUpTimer -= Time.deltaTime;
@@ -80,13 +79,19 @@ public class newPlayer : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && ammo > 0)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            // Decrement the amount of ammo it takes to reload the gun
-            ammo -= totalBulletNum;
-            // Asign the totalBullet the gun can hold to the bullet number
-            BulletNum = totalBulletNum;
-            
+            // If the ammo is more the the total magazine then completely reload the gun else just fill up the gun with the remaining ammo.
+            if(ammo >= totalBulletNum){
+                // Decrement the amount of ammo it takes to reload the gun
+                ammo -= totalBulletNum;
+                // Asign the totalBullet the gun can hold to the bullet number
+                BulletNum = totalBulletNum;
+            } else if(ammo > 0){
+                BulletNum = BulletNum + ammo;
+                ammo = 0;
+            }
+
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/" + totalBulletNum.ToString();
         } else {
             // Debug.Log("Out of ammo");
@@ -137,7 +142,7 @@ public class newPlayer : MonoBehaviour
     // A function that will set the bulletNum to -1 inorder to let the player have unlimited ammo
     public void ApplyUnlimitedAmmoPickup(){
         // Increment the ammo by 1 to be fair.
-        ammo = ammo + 1;
+        BulletNum = BulletNum + 1;
         // Set the power up timer
         powerUpTimer = 5;
         // and set the unlimitedAmmo variable to true
