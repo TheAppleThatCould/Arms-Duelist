@@ -28131,7 +28131,7 @@ GameObject:
   - component: {fileID: 1188095980}
   - component: {fileID: 1188095979}
   m_Layer: 5
-  m_Name: Numtext
+  m_Name: scoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35560,7 +35560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809e758398d5959e68ec644c4e578d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsText: {fileID: 1282326436}
 --- !u!1 &1476275484
 GameObject:
   m_ObjectHideFlags: 0
@@ -37627,7 +37626,7 @@ MonoBehaviour:
   - {fileID: 1021731913185669401, guid: 8f3359a12e6b5fb41820ddf25e145c27, type: 3}
   - {fileID: 5776270568589166772, guid: 6e48726a4e2bbcd4f9ac76d22916cf84, type: 3}
   Boss: {fileID: 1280661996}
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 1188095980}
   scores: 0
   RemainingEnemiesText: {fileID: 276631321}
   CurrentWaveText: {fileID: 1755077859}
@@ -37639,7 +37638,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 825450265}
   winMusic: {fileID: 8300000, guid: d89da88242bef8948bb36f9309f2f45b, type: 3}
   enemiesRemaining: 0
-  currentWave: 1
+  currentWave: 3
 --- !u!4 &1553845114
 Transform:
   m_ObjectHideFlags: 0
