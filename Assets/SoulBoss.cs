@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
-using UnityEngine.SceneManagement;
 
 public class SoulBoss : MonoBehaviour
 {
     // Get the remaining enemies from gameManager
     private GameManager gameManager;
+
     // Get the items asset to spawn on enemy death
     private GameObject ammoPack;
     private GameObject health;
@@ -22,7 +21,7 @@ public class SoulBoss : MonoBehaviour
 
 
     // Get the first person controller for the purpose of unlocking the mouse lock.
-    FirstPersonController firstPersonController;
+    private FirstPersonController firstPersonController;
 
     private Transform playerPos;
     private NavMeshAgent navAi;
@@ -41,7 +40,7 @@ public class SoulBoss : MonoBehaviour
     // Check if enemy is dead
     private bool isDead = false;
 
-    void Start()
+    private void Start()
     {
         maxhp = HP;
         time = timer;
@@ -52,7 +51,7 @@ public class SoulBoss : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Get the game manager instance
-        GameObject gameManagerObject = GameObject.Find("/GameManager");
+        var gameManagerObject = GameObject.Find("/GameManager");
         gameManager = gameManagerObject.GetComponent<GameManager>();
 
         // Get the item assets to copy.
@@ -69,24 +68,26 @@ public class SoulBoss : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (HP <= 0) { 
+        if (HP <= 0)
+        {
             // Run on enemy death ->
-            navAi.isStopped = true; 
+            navAi.isStopped = true;
 
-            if(!isDead){
+            if (!isDead)
+            {
                 // Decrement remaining enemies only once for each enemy.  
                 gameManager.enemiesRemaining -= 1;
                 isDead = true;
                 spawnRandomItem();
             }
-            return; 
+
+            return;
         }
 
 
-
-        float distance = Vector3.Distance(player.transform.position, transform.position);
+        var distance = Vector3.Distance(player.transform.position, transform.position);
         if (distance <= fitDistance)
         {
             navAi.isStopped = true;
@@ -95,7 +96,7 @@ public class SoulBoss : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > time)
             {
-                int rand = Random.Range(1, 3);
+                var rand = Random.Range(1, 3);
                 animator.SetTrigger("Attack1");
                 timer = 0;
             }
@@ -103,29 +104,23 @@ public class SoulBoss : MonoBehaviour
             {
                 animator.SetBool("Walk", false);
             }
-
         }
         else
         {
             navAi.isStopped = false;
             navAi.SetDestination(playerPos.position);
-              
+
             animator.SetBool("Walk", true);
         }
     }
 
 
-
     public void Atkclick()
     {
         if (isBoss)
-        {
             player.TakeDamage(30);
-        }
         else
-        {
             player.TakeDamage(10);
-        }
     }
 
     public Slider hpslider;
@@ -133,12 +128,12 @@ public class SoulBoss : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (HP <=0) return;
+        if (HP <= 0) return;
 
 
         HP -= damage;
 
-        if (HP<=0)
+        if (HP <= 0)
         {
             HP = 0;
             navAi.isStopped = true;
@@ -146,26 +141,26 @@ public class SoulBoss : MonoBehaviour
             GameManager.instence.AddNum();
             hpslider.gameObject.SetActive(false);
 
-            if (isBoss){
+            if (isBoss)
+            {
                 gameManager.playWinMusic();
-                Invoke("yanshiying",5); 
+                Invoke("toggleWinningScreen", 5);
             }
 
-            Destroy(this.gameObject,5);
+            Destroy(gameObject, 5);
         }
 
         hpslider.value = HP / maxhp;
     }
 
-    public void yanshiying()
+    public void toggleWinningScreen()
     {
         Time.timeScale = 0;
-        
-        GameObject player = GameObject.Find("/Player");
+
+        var player = GameObject.Find("/Player");
         firstPersonController = player.GetComponent<FirstPersonController>();
         firstPersonController.unlockMouseLock();
         SceneManager.LoadScene("WinScene");
-
     }
 
     // a function that will spawn a random item on enemy death.
