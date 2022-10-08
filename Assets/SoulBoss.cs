@@ -180,18 +180,20 @@ public class SoulBoss : MonoBehaviour
         } else if(randomNum > 50 && randomNum <= 60){
             // 10% chance to drop unlimited ammo
             Instantiate(unlimitedAmmo, transform.position, ammoPack.transform.rotation);
-        }else if(randomNum > 60 && randomNum <= 70){
-            // 10% chance to drop a assualt rife
+        }else if(randomNum > 60 && randomNum <= 65){
+            // 5% chance to drop a assualt rife
             Instantiate(assualtRife, transform.position, ammoPack.transform.rotation);
-        }else if(randomNum > 70 && randomNum <= 85){
-            // 15% chance to drop a revolver
+        }else if(randomNum > 65 && randomNum <= 75){
+            // 10% chance to drop a revolver
             Instantiate(revolver, transform.position, ammoPack.transform.rotation);
-        }else if(randomNum > 80 && randomNum <= 95){
-            // 15% chance to drop a M1A1
+        }else if(randomNum > 75 && randomNum <= 80){
+            // 5% chance to drop a M1A1
             Instantiate(M1A1, transform.position, ammoPack.transform.rotation);
-        }else if(randomNum > 95){
-            // 5% chance to drop a stenmk2
+        }else if(randomNum > 80 && randomNum <= 85){
+            // 10% chance to drop a stenmk2
             Instantiate(stenmk2, transform.position, ammoPack.transform.rotation);
+        }else {
+            // 15% chance to drop nothing.
         }
     }
 }
