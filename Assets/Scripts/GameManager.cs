@@ -1,22 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instence;
     public newPlayer player;
 
-    public List<Transform> sptrans = new List<Transform>();
-    public List<GameObject> enemyprelist = new List<GameObject>();
+    public List<Transform> sptrans = new();
+    public List<GameObject> enemyprelist = new();
 
     public GameObject Boss;
 
     // UI text for player interface ->
-    public Text NumText;
-    public int NUm;
+    public Text scoreText;
+    public int scores;
     public Text RemainingEnemiesText;
     public Text CurrentWaveText;
     public Text currentAmmoText;
@@ -36,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        GameObject playerObject = GameObject.Find("/Player");
+        var playerObject = GameObject.Find("/Player");
         player = playerObject.GetComponent<newPlayer>();
 
         instence = this;
@@ -51,33 +49,32 @@ public class GameManager : MonoBehaviour
         Invoke("SpawnEnemy", 2);
     }
 
-    void Update(){
+    private void Update()
+    {
         // Update the UI Text every frame
         updateUIText();
     }
 
-    private void updateGame(){
+    private void updateGame()
+    {
         // check if all the enemies are dead and limit the amount of waves
-        if(enemiesRemaining == 0 && currentWave <= 6){
-            Invoke("SpawnEnemy", 5);
-        }
+        if (enemiesRemaining == 0 && currentWave <= 6) Invoke("SpawnEnemy", 5);
     }
 
     public void SpawnEnemy()
     {
-        if (currentWave >=6)
+        if (currentWave >= 6)
         {
             Boss.SetActive(true);
             return;
         }
 
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
         {
-            
-            int spindex = Random.Range(0, sptrans.Count);
-            int preindex = Random.Range(0, enemyprelist.Count);
+            var spindex = Random.Range(0, sptrans.Count);
+            var preindex = Random.Range(0, enemyprelist.Count);
 
-            Instantiate(enemyprelist[preindex], sptrans[spindex].position,Quaternion.identity);
+            Instantiate(enemyprelist[preindex], sptrans[spindex].position, Quaternion.identity);
 
             // Increment the amount of enemies remaining for each enemy spawn.
             enemiesRemaining += 1;
@@ -87,24 +84,27 @@ public class GameManager : MonoBehaviour
         currentWave += 1;
     }
 
-    public void AddNum()
+    public void addScores()
     {
-        NUm++;
-        NumText.text = "score:"+NUm.ToString();
+        scores++;
+        scoreText.text = "score:" + scores.ToString();
     }
 
-    public void updateUIText(){
+    public void updateUIText()
+    {
         RemainingEnemiesText.text = "Remaining Enemies: " + enemiesRemaining.ToString();
         CurrentWaveText.text = "Current Wave: " + currentWave.ToString();
         currentAmmoText.text = "Ammo: " + player.ammo.ToString();
         bulletText.text = "Bullet:" + player.BulletNum.ToString() + "/" + player.totalBulletNum.ToString();
     }
 
-    private void toggleIntroPanel(){
+    private void toggleIntroPanel()
+    {
         IntroductionPanel.SetActive(false);
     }
 
-    public void playWinMusic(){
+    public void playWinMusic()
+    {
         backgroundMusic.PlayOneShot(winMusic);
     }
 }

@@ -138,7 +138,6 @@ public class SoulBoss : MonoBehaviour
             HP = 0;
             navAi.isStopped = true;
             animator.SetTrigger("die");
-            GameManager.instence.AddNum();
             hpslider.gameObject.SetActive(false);
 
             if (isBoss)
@@ -161,6 +160,7 @@ public class SoulBoss : MonoBehaviour
         firstPersonController = player.GetComponent<FirstPersonController>();
         firstPersonController.unlockMouseLock();
         SceneManager.LoadScene("WinScene");
+        Time.timeScale = 0;
     }
 
     // a function that will spawn a random item on enemy death.
