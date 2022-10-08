@@ -139,6 +139,7 @@ public class SoulBoss : MonoBehaviour
             navAi.isStopped = true;
             animator.SetTrigger("die");
             hpslider.gameObject.SetActive(false);
+            gameManager.addScores();
 
             if (isBoss)
             {
