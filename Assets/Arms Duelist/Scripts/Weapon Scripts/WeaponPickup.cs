@@ -104,6 +104,14 @@ public class WeaponPickup : MonoBehaviour
             weaponVectorPosition = new Vector3(-0.8f, 0.22f, -0.17f);
             weaponVectorRotation = new Vector3(0f, 0f, 0f);
             weaponVectorScale = new Vector3(1f, 1f, 1f);
+        }else if(gameObject.name == "M1A1(Clone)"){
+            weaponVectorPosition = new Vector3(-1.26f, 0.44f, 0f);
+            weaponVectorRotation = new Vector3(-3.7f, 91.3f, -0.07f);
+            weaponVectorScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }else if(gameObject.name == "stenmk2(Clone)"){
+            weaponVectorPosition = new Vector3(-0.78f, 0.23f, 0.12f);
+            weaponVectorRotation = new Vector3(4.17f, -94.62f, 0.07f);
+            weaponVectorScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
         
         // Assign the weapon position, rotation, and scale based on the above three variable inside of the if statement.

@@ -17,6 +17,9 @@ public class SoulBoss : MonoBehaviour
     // Get the weapon to spawn on enemy death
     private GameObject assualtRife;
     private GameObject revolver;
+    private GameObject M1A1;
+    private GameObject stenmk2;
+
 
     // Get the first person controller for the purpose of unlocking the mouse lock.
     FirstPersonController firstPersonController;
@@ -60,6 +63,8 @@ public class SoulBoss : MonoBehaviour
         // Get the weapons assets to copy.
         assualtRife = GameObject.Find("/WeaponObjects/AssualtRife");
         revolver = GameObject.Find("/WeaponObjects/Revolver");
+        M1A1 = GameObject.Find("/WeaponObjects/M1A1");
+        stenmk2 = GameObject.Find("/WeaponObjects/stenmk2");
 
     }
 
@@ -172,15 +177,21 @@ public class SoulBoss : MonoBehaviour
         } else if(randomNum > 25 && randomNum <= 50){
             // 25% chance to drop health
             Instantiate(health, transform.position, ammoPack.transform.rotation);
-        } else if(randomNum > 50 && randomNum <= 70){
-            // 20% chance to drop unlimited ammo
+        } else if(randomNum > 50 && randomNum <= 60){
+            // 10% chance to drop unlimited ammo
             Instantiate(unlimitedAmmo, transform.position, ammoPack.transform.rotation);
-        }else if(randomNum > 70 && randomNum <= 80){
+        }else if(randomNum > 60 && randomNum <= 70){
             // 10% chance to drop a assualt rife
             Instantiate(assualtRife, transform.position, ammoPack.transform.rotation);
-        }else if(randomNum > 80){
-            // 20% chance to drop a revolver
+        }else if(randomNum > 70 && randomNum <= 85){
+            // 15% chance to drop a revolver
             Instantiate(revolver, transform.position, ammoPack.transform.rotation);
+        }else if(randomNum > 80 && randomNum <= 95){
+            // 15% chance to drop a M1A1
+            Instantiate(M1A1, transform.position, ammoPack.transform.rotation);
+        }else if(randomNum > 95){
+            // 5% chance to drop a stenmk2
+            Instantiate(stenmk2, transform.position, ammoPack.transform.rotation);
         }
     }
 }
