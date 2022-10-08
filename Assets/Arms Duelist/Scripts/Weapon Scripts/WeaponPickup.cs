@@ -93,11 +93,11 @@ public class WeaponPickup : MonoBehaviour
 
 
         // Change the position and rotation of a weapon depending on the weapon.
-        if(gameObject.name == "Revolver"){
+        if(gameObject.name == "Revolver(Clone)"){
             weaponVectorPosition = new Vector3(-0.9f, 0.15f, -0.325f);
             weaponVectorRotation = new Vector3(0f, 89f, 0f);
             weaponVectorScale = new Vector3(2.5f, 2.5f, 2.5f);
-        } else if(gameObject.name == "AssualtRife"){
+        } else if(gameObject.name == "AssualtRife(Clone)"){
             weaponVectorPosition = new Vector3(-0.2f, 0f, -0.3f);
             weaponVectorRotation = new Vector3(0f, -90f, 0f);
             weaponVectorScale = new Vector3(4f, 4f, 4f);

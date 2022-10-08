@@ -14,7 +14,9 @@ public class SoulBoss : MonoBehaviour
     private GameObject ammoPack;
     private GameObject health;
     private GameObject unlimitedAmmo;
-
+    // Get the weapon to spawn on enemy death
+    private GameObject assualtRife;
+    private GameObject revolver;
 
     // Get the first person controller for the purpose of unlocking the mouse lock.
     FirstPersonController firstPersonController;
@@ -54,6 +56,11 @@ public class SoulBoss : MonoBehaviour
         ammoPack = GameObject.Find("/PotentialPowerUps/AmmoBox");
         health = GameObject.Find("/PotentialPowerUps/Health");
         unlimitedAmmo = GameObject.Find("/PotentialPowerUps/UnlimitedAmmo");
+
+        // Get the weapons assets to copy.
+        assualtRife = GameObject.Find("/WeaponObjects/AssualtRife");
+        revolver = GameObject.Find("/WeaponObjects/Revolver");
+
     }
 
     // Update is called once per frame
@@ -159,15 +166,21 @@ public class SoulBoss : MonoBehaviour
     // a function that will spawn a random item on enemy death.
     public void spawnRandomItem(){
         int randomNum = Random.Range(0, 100);
-        if(randomNum <= 50){
-            // 50% chance to drop ammo
+        if(randomNum <= 25){
+            // 25% chance to drop ammo
             Instantiate(ammoPack, transform.position, ammoPack.transform.rotation);
-        } else if(randomNum > 50 && randomNum <= 80){
-            // 30% chance to drop health
+        } else if(randomNum > 25 && randomNum <= 50){
+            // 25% chance to drop health
             Instantiate(health, transform.position, ammoPack.transform.rotation);
-        } else if(randomNum > 80){
-            // 20% chance to drop unlimited ammo
+        } else if(randomNum > 50 && randomNum <= 65){
+            // 15% chance to drop unlimited ammo
             Instantiate(unlimitedAmmo, transform.position, ammoPack.transform.rotation);
+        }else if(randomNum > 65 && randomNum <= 80){
+            // 15% chance to drop a assualt rife
+            Instantiate(assualtRife, transform.position, ammoPack.transform.rotation);
+        }else if(randomNum > 80){
+            // 20% chance to drop a revolver
+            Instantiate(revolver, transform.position, ammoPack.transform.rotation);
         }
     }
 }

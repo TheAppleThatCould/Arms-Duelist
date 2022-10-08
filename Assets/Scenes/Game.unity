@@ -10951,7 +10951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483661967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 286.84076, y: 33.5611, z: 108.047585}
+  m_LocalPosition: {x: 286.84076, y: -26.9, z: 108.047585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 299648603}
@@ -36077,7 +36077,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 825450265}
   winMusic: {fileID: 8300000, guid: d89da88242bef8948bb36f9309f2f45b, type: 3}
   enemiesRemaining: 0
-  currentWave: 6
+  currentWave: 1
 --- !u!4 &1553845114
 Transform:
   m_ObjectHideFlags: 0
