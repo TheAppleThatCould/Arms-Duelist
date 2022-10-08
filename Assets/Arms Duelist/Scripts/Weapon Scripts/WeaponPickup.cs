@@ -40,7 +40,6 @@ public class WeaponPickup : MonoBehaviour
         weaponHolder = GameObject.Find("/Player/FirstPersonCharacter/WeaponHolder");
         gunData = weaponHolder.transform.GetChild(0).GetComponent<GunData>();
 
-
         // Intialize the gunData to the player's weapon variables.
         playerScript.damage = gunData.damage;
         playerScript.BulletNum = gunData.bulletNum;
