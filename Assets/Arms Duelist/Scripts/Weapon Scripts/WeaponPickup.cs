@@ -23,7 +23,7 @@ public class WeaponPickup : MonoBehaviour
     public bool equipped;
     public static bool slotFull;
 
-
+    // Default position, rotation and scale.
     private Vector3 weaponVectorPosition = new Vector3(0f, 0f, 0f);
     private Vector3 weaponVectorRotation = new Vector3(0f, 0f, 0f);
     private Vector3 weaponVectorScale = new Vector3(1f, 1f, 1f);
@@ -41,10 +41,11 @@ public class WeaponPickup : MonoBehaviour
         gunData = weaponHolder.transform.GetChild(0).GetComponent<GunData>();
 
 
-        // Intialize the gunData 
+        // Intialize the gunData to the player's weapon variables.
         playerScript.damage = gunData.damage;
         playerScript.BulletNum = gunData.bulletNum;
         playerScript.totalBulletNum = gunData.bulletNum;
+
         // The isEquiped
         playerScript.isEquiped = true;
 
@@ -76,10 +77,14 @@ public class WeaponPickup : MonoBehaviour
         }
     }
 
+    // A function that will pick up a weapon and placed it within the WeaponHolder gameobject
     private void PickUp(){
+        // Set certain variable to true when the weapon is equipped.
         equipped = true;
         slotFull = true;
+        // Make the crosshair appear once the weapon is picked up.
         crossHair.SetActive(true);
+        // Enable the player ability to shoot the gun
         playerScript.isEquiped = true;  
 
         // Pick up gun and place it in the WeaponHolder and set the position and rotation to zero.
@@ -87,7 +92,7 @@ public class WeaponPickup : MonoBehaviour
         transform.SetParent(WeaponHolder);
 
 
-        // change the position and rotation of a weapon depending on the weapon.
+        // Change the position and rotation of a weapon depending on the weapon.
         if(gameObject.name == "Revolver"){
             weaponVectorPosition = new Vector3(-0.9f, 0.15f, -0.325f);
             weaponVectorRotation = new Vector3(0f, 89f, 0f);
@@ -96,19 +101,26 @@ public class WeaponPickup : MonoBehaviour
             weaponVectorPosition = new Vector3(-0.2f, 0f, -0.3f);
             weaponVectorRotation = new Vector3(0f, -90f, 0f);
             weaponVectorScale = new Vector3(4f, 4f, 4f);
+        }else if(gameObject.name == "Pistol"){
+            weaponVectorPosition = new Vector3(-0.8f, 0.22f, -0.17f);
+            weaponVectorRotation = new Vector3(0f, 0f, 0f);
+            weaponVectorScale = new Vector3(1f, 1f, 1f);
         }
         
+        // Assign the weapon position, rotation, and scale based on the above three variable inside of the if statement.
         transform.localPosition = weaponVectorPosition;
         transform.localRotation = Quaternion.Euler(weaponVectorRotation);
         transform.localScale = weaponVectorScale;
         
-
+        
         rb.isKinematic = true;
+        // Allow the collider to be triggered.
         coll.isTrigger = true;
 
         // Get the current gun data.
         gunData = weaponHolder.transform.GetChild(0).GetComponent<GunData>();
 
+        // Set the player's weapon variable based on the gun that was picked up.
         playerScript.damage = gunData.damage;
         playerScript.BulletNum = gunData.bulletNum;
         playerScript.totalBulletNum = gunData.totalBulletNum;
@@ -118,10 +130,14 @@ public class WeaponPickup : MonoBehaviour
         gameManagerScript.updateUIText();
     }
 
+    // A function that will drop the weapon within the WeaponHolder gameobject
     private void Drop(){
+        // Set certain variable to false when the weapon isn't equipped.
         equipped = false;
         slotFull = false;
+        // Display the shooting functionality when the player doesn't have a weapon
         playerScript.isEquiped = false;
+        // Makes the crosshair image disapear if the player doesn't have a weapon
         crossHair.SetActive(false);
 
         // Remove weapon from WeaponHolder object.
@@ -131,15 +147,16 @@ public class WeaponPickup : MonoBehaviour
         coll.isTrigger = false;
 
         rb.velocity = player.GetComponent<Rigidbody>().velocity;
-
+        
+        // Asign the force for the weapon drop. This lets the player "throw" the weapon away
         rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);
         rb.AddForce(fpsCam.up * dropUpwardForce, ForceMode.Impulse);
 
-        //add random rotation on throw
+        // Add random rotation on throw
         float random = Random.Range(-1f, 1f);
         rb.AddTorque(new Vector3(random, random, random)*10);
 
-        // update the UI text
+        // Update the UI text
         gameManagerScript.updateUIText();
     }
 
