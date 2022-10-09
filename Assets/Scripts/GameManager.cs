@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // Set the score to zero once the game starts
+        scores = 0;
         // Get the player object
         var playerObject = GameObject.Find("/Player");
         player = playerObject.GetComponent<newPlayer>();
@@ -125,5 +127,10 @@ public class GameManager : MonoBehaviour
     public void playWinMusic()
     {
         backgroundMusic.PlayOneShot(winMusic);
+    }
+
+
+    public int getScore(){
+        return scores;
     }
 }

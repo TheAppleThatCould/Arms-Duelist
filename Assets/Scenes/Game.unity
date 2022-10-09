@@ -6379,7 +6379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 0}
+  m_AnchoredPosition: {x: -571, y: 0}
   m_SizeDelta: {x: 1500, y: 205.9343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &276631320
@@ -13617,6 +13617,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600076390}
   m_Mesh: {fileID: 2383492236405592046, guid: 6228f5b4891250c4eb9ddbfdc143a947, type: 3}
+--- !u!1 &600738810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600738812}
+  - component: {fileID: 600738811}
+  m_Layer: 0
+  m_Name: WinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &600738811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600738810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7976c54095b2a8f48a2b58d0ab88f4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+--- !u!4 &600738812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600738810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 358.60825, y: 287.15955, z: 226.34972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &605495316
 GameObject:
   m_ObjectHideFlags: 0
@@ -32430,7 +32474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1392772281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36879,7 +36923,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 825450265}
   winMusic: {fileID: 8300000, guid: d89da88242bef8948bb36f9309f2f45b, type: 3}
   enemiesRemaining: 0
-  currentWave: 1
+  currentWave: 0
 --- !u!4 &1553845114
 Transform:
   m_ObjectHideFlags: 0
@@ -39101,7 +39145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 232}
+  m_AnchoredPosition: {x: -564, y: 232}
   m_SizeDelta: {x: 1500, y: 205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1635134673
@@ -41796,7 +41840,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 118}
+  m_AnchoredPosition: {x: -568, y: 118}
   m_SizeDelta: {x: 1500, y: 205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1755077858
