@@ -156,7 +156,7 @@ public class SoulBoss : MonoBehaviour
     public void toggleWinningScreen()
     {
         Time.timeScale = 0;
-
+        Debug.Log("Test");
         var player = GameObject.Find("/Player");
         firstPersonController = player.GetComponent<FirstPersonController>();
         firstPersonController.unlockMouseLock();

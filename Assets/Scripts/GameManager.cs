@@ -2,19 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+using System.Collections;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instence;
     public newPlayer player;
 
-    public List<Transform> sptrans = new();
-    public List<GameObject> enemyprelist = new();
+    public List<Transform> sptrans = new List<Transform>();
+    public List<GameObject> enemyprelist = new List<GameObject>();
 
     public GameObject Boss;
 
     // UI text for player interface ->
     public Text scoreText;
-    public int scores;
+    public int scores = 0;
     public Text RemainingEnemiesText;
     public Text CurrentWaveText;
     public Text currentAmmoText;
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentWave >= 6)
         {
+            enemiesRemaining += 1;
             Boss.SetActive(true);
             return;
         }
@@ -86,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void addScores()
     {
-        scores++;
+        scores += 1;
         scoreText.text = "score:" + scores.ToString();
     }
 
