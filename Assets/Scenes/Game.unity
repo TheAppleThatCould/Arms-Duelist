@@ -32430,7 +32430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1392772281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36880,7 +36880,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 825450265}
   winMusic: {fileID: 8300000, guid: d89da88242bef8948bb36f9309f2f45b, type: 3}
   enemiesRemaining: 0
-  currentWave: 6
+  currentWave: 1
 --- !u!4 &1553845114
 Transform:
   m_ObjectHideFlags: 0
