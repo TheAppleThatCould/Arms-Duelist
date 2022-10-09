@@ -13,12 +13,11 @@ public class GameManager : MonoBehaviour
 
     public List<Transform> sptrans = new List<Transform>();
     public List<GameObject> enemyprelist = new List<GameObject>();
-
     public GameObject Boss;
 
     // UI text for player interface ->
     public Text scoreText;
-    public int scores = 0;
+    public static int scores = 0;
     public Text RemainingEnemiesText;
     public Text CurrentWaveText;
     public Text currentAmmoText;
@@ -37,6 +36,8 @@ public class GameManager : MonoBehaviour
     public int enemiesRemaining = 0;
     // Current wave
     public int currentWave = 0;
+    // Timer to spawn enemies.
+    private float timer = 14f;
 
     private void Awake()
     {
@@ -49,9 +50,6 @@ public class GameManager : MonoBehaviour
         // Disable the introPanel in 5 seconds
         Invoke("toggleIntroPanel", 10);
 
-        // The built-in update() was too fast, therefore the InvokeRepeating is used to check the remaining enemies.
-        InvokeRepeating("updateGame", 14, 3);
-
         // Spawn enemies before the updateGame() because the updateGame will check the amount of enemies spawned.
         Invoke("SpawnEnemy", 13);
     }
@@ -60,13 +58,15 @@ public class GameManager : MonoBehaviour
     {
         // Update the UI Text every frame
         updateUIText();
-    }
-
-    // This function will spawn the enemy if the current wave ends or is not at the last wave
-    private void updateGame()
-    {
-        // check if all the enemies are dead and limit the amount of waves
-        if (enemiesRemaining == 0 && currentWave <= 6) Invoke("SpawnEnemy", 5);
+        
+        // Spawn enemy if the current wave is finish and the current wave isn't final wave
+        if (enemiesRemaining == 0 && currentWave <= 6){
+            // Spawn enemies in 5 seconds.
+            timer -= Time.deltaTime;
+            if(timer <= 0){
+                SpawnEnemy();
+            }
+        }
     }
 
     // A function that will spawn the enemies
@@ -94,6 +94,9 @@ public class GameManager : MonoBehaviour
 
         // Increment the current wave count.
         currentWave += 1;
+
+        // Set timer for every 5 seconds.
+        timer = 5f;
     }
 
     // Add a single score to the player per enemy killed
