@@ -153,7 +153,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2006454527}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -193,8 +193,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game Creators \n\n- Jianquan Xie (s5140859)\n\n\n\n\n\n\n- Joshua Adams
-    (s5224647)\n\n\n\n\n\n\n\n\n- Andrew Jordan (s2760960)\n"
+  m_Text: "Game Creators \n\n- Jianquan Xie (s5140859)\n\n\n\n\n\n\n\n- Joshua Adams
+    (s5224647)\n\n\n\n\n\n\n\n- Andrew Jordan (s2760960)\n"
 --- !u!222 &5571063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2093,7 +2093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 8f2c030e9222caa4e827f7229b6401cb, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2142,7 +2142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 438, y: -150.4245}
+  m_AnchoredPosition: {x: 438, y: -137}
   m_SizeDelta: {x: 96, y: 102.849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &818595078
@@ -3558,11 +3558,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2006454527}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 436, y: 81}
+  m_AnchoredPosition: {x: 436, y: 58}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1903318622
@@ -3630,8 +3630,8 @@ RectTransform:
   - {fileID: 1828006032}
   - {fileID: 420099091}
   - {fileID: 1897691785}
-  - {fileID: 1903318621}
   - {fileID: 5571061}
+  - {fileID: 1903318621}
   - {fileID: 818595077}
   - {fileID: 785965763}
   m_Father: {fileID: 820439504}
