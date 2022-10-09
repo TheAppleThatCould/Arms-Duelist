@@ -31,9 +31,11 @@ public class SoulBoss : MonoBehaviour
     public float timer = 3;
     private float time = 3;
 
+    // Audio variable -> 
     private AudioSource source;
     private newPlayer player;
 
+    // Enemy variable -> 
     public float HP = 100;
     private float maxhp;
 
@@ -42,6 +44,7 @@ public class SoulBoss : MonoBehaviour
 
     private void Start()
     {
+        // Initialize the SoulBoss Script
         maxhp = HP;
         time = timer;
         source = GetComponent<AudioSource>();
@@ -70,6 +73,7 @@ public class SoulBoss : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // Check if the enemy is dead
         if (HP <= 0)
         {
             // Run on enemy death ->
@@ -77,7 +81,7 @@ public class SoulBoss : MonoBehaviour
 
             if (!isDead)
             {
-                // Decrement remaining enemies only once for each enemy.  
+                // Decrement remaining enemy once for each enemy.  
                 gameManager.enemiesRemaining -= 1;
                 isDead = true;
                 spawnRandomItem();
@@ -86,14 +90,15 @@ public class SoulBoss : MonoBehaviour
             return;
         }
 
-
+        // Get player distance from enemy
         var distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance <= fitDistance)
-        {
+        
+        // Stop the enemy once they reach the player
+        if (distance <= fitDistance){
             navAi.isStopped = true;
 
-
             timer += Time.deltaTime;
+            // Attack the player every second
             if (timer > time)
             {
                 var rand = Random.Range(1, 3);
@@ -105,31 +110,31 @@ public class SoulBoss : MonoBehaviour
                 animator.SetBool("Walk", false);
             }
         }
-        else
-        {
+        else{
+            // if the player isn't in range let the enemy continue
             navAi.isStopped = false;
             navAi.SetDestination(playerPos.position);
-
             animator.SetBool("Walk", true);
         }
     }
 
-
+    // Asign the damge for the enemy
     public void Atkclick()
     {
-        if (isBoss)
+        if (isBoss) // the boss will do more damage
             player.TakeDamage(30);
         else
             player.TakeDamage(10);
     }
 
     public Slider hpslider;
-    public bool isBoss = false;
+    public bool isBoss = false; // check if the enemy spawning is the boss or not
 
+    // A function that will decrement the enemy health
     public void TakeDamage(float damage)
     {
+        // if the enemy is dead don't execute the function
         if (HP <= 0) return;
-
 
         HP -= damage;
 
@@ -146,13 +151,14 @@ public class SoulBoss : MonoBehaviour
                 gameManager.playWinMusic();
                 Invoke("toggleWinningScreen", 5);
             }
-
+            // Show the enemy body before destorying the corpse.
             Destroy(gameObject, 5);
         }
 
         hpslider.value = HP / maxhp;
     }
 
+    // A function that will navigate the player to the winning scene
     public void toggleWinningScreen()
     {
         Time.timeScale = 0;

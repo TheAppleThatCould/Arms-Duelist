@@ -91,7 +91,7 @@ public class WeaponPickup : MonoBehaviour
         transform.SetParent(WeaponHolder);
 
 
-        // Change the position and rotation of a weapon depending on the weapon.
+        // Change the position, rotation and scale of a weapon depending on the weapon.
         if(gameObject.name == "Revolver(Clone)"){
             weaponVectorPosition = new Vector3(-0.9f, 0.15f, -0.325f);
             weaponVectorRotation = new Vector3(0f, 89f, 0f);

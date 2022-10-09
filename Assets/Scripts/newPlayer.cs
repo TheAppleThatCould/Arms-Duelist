@@ -10,9 +10,11 @@ public class newPlayer : MonoBehaviour
     // Get the first person controller for the purpose of unlocking the mouse lock.
     private FirstPersonController firstPersonController;
 
+    // Player variable
     public float HP = 100;
     private float MaxHP;
 
+    // Player weapon variables
     public int damage = 20;
     public int BulletNum = 30;
     public int totalBulletNum;
@@ -21,11 +23,13 @@ public class newPlayer : MonoBehaviour
     // Check to see if the player is currently holder a gun.
     public bool isEquiped = false;
 
+    // Power up related variables.
     public float powerUpTimer = 0;
     public bool unlimitedAmmo = false;
 
     private void Start()
     {
+        // Initialize the newPlayer script
         MaxHP = HP;
         totalBulletNum = BulletNum;
         source = GetComponent<AudioSource>();
@@ -43,7 +47,7 @@ public class newPlayer : MonoBehaviour
     }
 
 
-    // sound variable
+    // Sound variable
     public ParticleSystem fx1;
     public ParticleSystem fx2;
     private AudioSource source;
@@ -52,11 +56,13 @@ public class newPlayer : MonoBehaviour
     public AudioClip pickUpSound;
     public AudioClip loseSound;
 
-
+    // A function that will deal with the weapon firing.
     public void Fire()
-    {
+    {   
+        // check if the player is holding a gun and clicking the shoot key.
         if (Input.GetMouseButtonDown(0) && BulletNum > 0 && isEquiped == true)
         {
+            // Play sound related to the weapon
             fx1.Play();
             fx2.Play();
             source.PlayOneShot(shootclip);
@@ -64,15 +70,18 @@ public class newPlayer : MonoBehaviour
             // Check if the player currently have unlimited ammo power up
             if (!unlimitedAmmo) BulletNum--;
 
+            // Update the player UI for their remaining bullets.
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/" + totalBulletNum.ToString();
 
             var ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
             RaycastHit hitinfo;
 
+            // Check if the bullet collided with the enemy
             if (Physics.Raycast(ray, out hitinfo) && hitinfo.collider.tag == "enemy")
                 hitinfo.collider.GetComponent<SoulBoss>().TakeDamage(damage);
         }
 
+        // Check if the player is reloading
         if (Input.GetKeyDown(KeyCode.R))
         {
             // If the ammo is more the the total magazine then completely reload the gun else just fill up the gun with the remaining ammo.
@@ -88,29 +97,25 @@ public class newPlayer : MonoBehaviour
                 BulletNum = BulletNum + ammo;
                 ammo = 0;
             }
-
+             // Update the player UI for their remaining bullets.
             bulletText.text = "Bullet:" + BulletNum.ToString() + "/" + totalBulletNum.ToString();
-        }
-        else
-        {
-            // Debug.Log("Out of ammo");
         }
     }
 
     public Slider hpslider;
 
+    // A function that deal with player damage
     public void TakeDamage(float damage)
     {
         if (HP <= 0) return;
 
         HP -= damage;
+        // check if the player is dead
         if (HP <= 0)
         {
             HP = 0;
             Time.timeScale = 0;
-            // TODO: the game can't restart in loseScene.
             source.PlayOneShot(loseSound);
-
             firstPersonController = gameObject.GetComponent<FirstPersonController>();
             firstPersonController.unlockMouseLock();
             SceneManager.LoadScene("LoseScene");
@@ -120,7 +125,7 @@ public class newPlayer : MonoBehaviour
         hpslider.value = HP / MaxHP;
     }
 
-
+    // A fuction that will load the current scene
     public void Loadmyscene()
     {
         Time.timeScale = 1;

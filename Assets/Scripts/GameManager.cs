@@ -7,6 +7,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    // Create variable for GameObject in the hierarchy
     public static GameManager instence;
     public newPlayer player;
 
@@ -23,20 +24,23 @@ public class GameManager : MonoBehaviour
     public Text currentAmmoText;
     public Text bulletText;
 
+    // Variable for the different panels
     public GameObject Winpanel;
     public GameObject overpanel;
     public GameObject IntroductionPanel;
 
+    // Game audio
     public AudioSource backgroundMusic;
     public AudioClip winMusic;
 
     // The current amount of enemies remaining.
     public int enemiesRemaining = 0;
-
+    // Current wave
     public int currentWave = 0;
 
     private void Awake()
     {
+        // Get the player object
         var playerObject = GameObject.Find("/Player");
         player = playerObject.GetComponent<newPlayer>();
 
@@ -58,14 +62,17 @@ public class GameManager : MonoBehaviour
         updateUIText();
     }
 
+    // This function will spawn the enemy if the current wave ends or is not at the last wave
     private void updateGame()
     {
         // check if all the enemies are dead and limit the amount of waves
         if (enemiesRemaining == 0 && currentWave <= 6) Invoke("SpawnEnemy", 5);
     }
 
+    // A function that will spawn the enemies
     public void SpawnEnemy()
     {
+        // If the current wave is the final wave then spawn the boss
         if (currentWave >= 6)
         {
             enemiesRemaining += 1;
@@ -73,6 +80,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        // Spawn 10 enemies
         for (var i = 0; i < 10; i++)
         {
             var spindex = Random.Range(0, sptrans.Count);
@@ -88,12 +96,14 @@ public class GameManager : MonoBehaviour
         currentWave += 1;
     }
 
+    // Add a single score to the player per enemy killed
     public void addScores()
     {
         scores += 1;
         scoreText.text = "score:" + scores.ToString();
     }
 
+    // Update the player UI
     public void updateUIText()
     {
         RemainingEnemiesText.text = "Remaining Enemies: " + enemiesRemaining.ToString();
@@ -102,11 +112,13 @@ public class GameManager : MonoBehaviour
         bulletText.text = "Bullet:" + player.BulletNum.ToString() + "/" + player.totalBulletNum.ToString();
     }
 
+    // Display the introduction panel
     private void toggleIntroPanel()
     {
         IntroductionPanel.SetActive(false);
     }
 
+    // Play the win music
     public void playWinMusic()
     {
         backgroundMusic.PlayOneShot(winMusic);
