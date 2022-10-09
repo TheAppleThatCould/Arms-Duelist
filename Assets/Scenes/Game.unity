@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.34913427, g: 0.448169, b: 0.5880735, a: 1}
+  m_IndirectSpecularColor: {r: 0.34916744, g: 0.44831413, b: 0.58806205, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -93005,7 +93005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1916666948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -93058,9 +93058,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Brisbane city is under attack and your the only hope. The monster''s reinforement
-    will come once the current wave is defeated. But becareful because once you defeat
-    all the wave the strongest monster will apear.
+  m_Text: 'Brisbane city is under attack and you''re the people''s only hope. The
+    monster''s reinforcement will come once all waves are defeated. But be careful!
+    Once you defeat all the waves, the strongest monster will appear. Prepare yourself,
+    Arms Duelist!
 
 '
 --- !u!222 &1916666950
